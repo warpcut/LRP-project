@@ -20,7 +20,7 @@ from PIL import ImageFile
 from matplotlib import pyplot
 from collections import Counter
 
-from Audio_LRP import get_keras_model, get_optimizer
+from model import get_keras_model, get_optimizer
 
 ImageFile.LOAD_TRUNCATED_IMAGES = True
 

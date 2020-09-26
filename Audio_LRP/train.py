@@ -12,7 +12,6 @@ import keras.utils
 from keras import regularizers, optimizers
 from keras.callbacks import ReduceLROnPlateau, ModelCheckpoint, EarlyStopping
 import pandas as pd
-#from keras.layers.advanced_activations import LeakyReLU
 import pylab
 from keras_preprocessing.image import ImageDataGenerator
 import PIL
@@ -20,6 +19,8 @@ from PIL import Image
 from PIL import ImageFile
 from matplotlib import pyplot
 from collections import Counter
+
+from Audio_LRP import get_keras_model, get_optimizer
 
 ImageFile.LOAD_TRUNCATED_IMAGES = True
 
@@ -36,7 +37,7 @@ def remove_ext(fn):
     
 # Generatori
 
-traindf=pd.read_csv('./urban/UrbanSound8Kext.csv', sep=';',dtype=str)
+traindf=pd.read_csv('./UrbanSound8Kext.csv', sep=';',dtype=str)
 traindf["slice_file_name"]=traindf["slice_file_name"].apply(append_ext)
 
 datagen=ImageDataGenerator(rescale=1./255.,validation_split=0.35)
@@ -76,10 +77,8 @@ input_shape=(220,220,3)
 
 # Load Model
 
-# TODO
-
-# model = get_keras_Conv()
-# optimizer = get_keras_Nadam()
+model = get_keras_model()
+optimizer = get_optimizer()
 
 # Def callbacks
 
@@ -121,13 +120,13 @@ history = model.fit(train_generator,
 pyplot.plot(history.history['accuracy'], label='train')
 pyplot.plot(history.history['val_accuracy'], label='test')
 pyplot.legend()
-pyplot.savefig('./models/rep/report_modelB2_80_nadam_acc.png')
+pyplot.savefig('./models/rep/report_model_80_nadam_acc.png')
 
 pyplot.clf()
 pyplot.plot(history.history['loss'], label='train_loss')
 pyplot.plot(history.history['val_loss'], label='test_loss')
 pyplot.legend()
-pyplot.savefig('./models/rep/report_modelB2_80_nadam_loss.png')
+pyplot.savefig('./models/rep/report_model_80_nadam_loss.png')
 pyplot.clf()
 
 scores = model.evaluate(valid_generator, steps=STEP_SIZE_VALID)

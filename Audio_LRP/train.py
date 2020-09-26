@@ -48,7 +48,7 @@ validation_datagen = ImageDataGenerator(rescale=1./255)
 
 train_generator=train_datagen.flow_from_dataframe(
     dataframe=traindf,
-    directory="./urban/DS/train/",
+    directory="../../mel/DS/train/",
     x_col="slice_file_name",
     y_col="class",
     batch_size=64,
@@ -59,7 +59,7 @@ train_generator=train_datagen.flow_from_dataframe(
 
 valid_generator=validation_datagen.flow_from_dataframe(
     dataframe=traindf,
-    directory="./urban/DS/val/",
+    directory="../../mel/DS/val/",
     x_col="slice_file_name",
     y_col="class",
     batch_size=64,
@@ -87,7 +87,7 @@ model.summary()
 
 reduce_lr = ReduceLROnPlateau(monitor='val_loss', factor=0.1,
                               patience=8, min_lr=0.001, verbose=1)
-mcp_save = ModelCheckpoint("./models/modelB2_weights_80_nadam.h5", save_best_only=True, monitor='val_loss', mode='min')
+mcp_save = ModelCheckpoint("../../mel/model/model_80_nadam.h5", save_best_only=True, monitor='val_loss', mode='min')
 early_stop = EarlyStopping(monitor='val_loss', min_delta=0, patience=15, verbose=1, mode='min', restore_best_weights=True)
 
 class_weight = {0: 1.,
@@ -120,22 +120,22 @@ history = model.fit(train_generator,
 pyplot.plot(history.history['accuracy'], label='train')
 pyplot.plot(history.history['val_accuracy'], label='test')
 pyplot.legend()
-pyplot.savefig('./models/rep/report_model_80_nadam_acc.png')
+pyplot.savefig('../../mel/reports/report_model_80_nadam_acc.png')
 
 pyplot.clf()
 pyplot.plot(history.history['loss'], label='train_loss')
 pyplot.plot(history.history['val_loss'], label='test_loss')
 pyplot.legend()
-pyplot.savefig('./models/rep/report_model_80_nadam_loss.png')
+pyplot.savefig('../../mel/reports/report_model_80_nadam_loss.png')
 pyplot.clf()
 
 scores = model.evaluate(valid_generator, steps=STEP_SIZE_VALID)
 print("Scores on test set: loss=%s accuracy=%s" % tuple(scores))
-f = open("./models/rep/report_modelB2_80_nadam.txt", "w")
+f = open("../../mel/reports/report_model_80_nadam.txt", "w")
 f.write("Scores on test set: loss=%s accuracy=%s" % tuple(scores))
 f.close()
 
 # Save trained model
-model.save('./models/modelB2_80_nadam.h5')
+model.save('../../mel/model/model_80_nadam.h5')
 
 print("Model saved")

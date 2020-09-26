@@ -5,7 +5,7 @@ import keras.layers
 import keras.models
 import keras.utils
 from keras import regularizers, optimizers
-def get_keras_model():
+def get_keras_model(input_shape):
     model = keras.models.Sequential([
         keras.layers.Conv2D(32, (3, 3), use_bias=False, input_shape=input_shape),
         keras.layers.BatchNormalization(),

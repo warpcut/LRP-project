@@ -77,7 +77,7 @@ input_shape=(220,220,3)
 
 # Load Model
 
-model = get_keras_model()
+model = get_keras_model(input_shape)
 optimizer = get_optimizer()
 
 # Def callbacks

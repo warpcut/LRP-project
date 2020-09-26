@@ -37,7 +37,7 @@ def remove_ext(fn):
     
 # Generatori
 
-traindf=pd.read_csv('./UrbanSound8Kext.csv', sep=';',dtype=str)
+traindf=pd.read_csv('../UrbanSound8Kext.csv', sep=';',dtype=str)
 traindf["slice_file_name"]=traindf["slice_file_name"].apply(append_ext)
 
 datagen=ImageDataGenerator(rescale=1./255.,validation_split=0.35)

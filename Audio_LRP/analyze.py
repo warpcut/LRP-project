@@ -106,13 +106,6 @@ for cat in cats:
   labels = dict((v,k) for k,v in labels.items())
   predictions = [labels[k] for k in predicted_class_indices]
   filenames=test_generator.filenames
-  y_pred = np.argmax(pred, axis=1)
-  print('Confusion Matrix')
-  print(confusion_matrix(test_generator.classes, y_pred))
-  print('Classification Report')
-  target_names = cats
-  print(classification_report(test_generator.classes, y_pred, target_names=target_names))
-
 
   model_wo_sm = iutils.keras.graph.model_wo_softmax(model)
   #model_wo_sm = model

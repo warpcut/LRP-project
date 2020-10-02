@@ -88,7 +88,7 @@ for cat in cats:
     target_size=(220,220))
   label_generator=test_datagen.flow_from_dataframe(
     dataframe=testdf,
-    directory="../../mel/label_gen",
+    directory="../../mel/DS/label_gen",
     x_col="slice_file_name",
     y_col="class",
     batch_size=2,

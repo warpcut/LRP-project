@@ -116,7 +116,7 @@ for cat in cats:
 
   counter = 0
   for batch in test_generator:
-    if counter*32+1 >= size[sizeCounter]:
+    if counter*32 >= size[sizeCounter]:
         break
     # LRP epsilon
     analyzer = innvestigate.create_analyzer("lrp.epsilon",model_wo_sm)

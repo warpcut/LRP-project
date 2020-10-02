@@ -143,7 +143,7 @@ for cat in cats:
         # Save image
         plt.imshow(batch[i], cmap="seismic", clim=(-1, 1))
         plt.axis('off')
-        filename = '../../mel/results/''+ cat + '/' + remove_ext(filenames[counter*32+i]) + "_" + predictions[counter*32+i] + '.png'
+        filename = '../../mel/results/' + cat + '/' + remove_ext(filenames[counter*32+i]) + "_" + predictions[counter*32+i] + '.png'
         plt.savefig(filename)
 
         # Save LRPepsilon

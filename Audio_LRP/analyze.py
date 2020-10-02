@@ -78,7 +78,7 @@ for cat in cats:
   print("generator: " + str(cat))
   test_generator=test_datagen.flow_from_dataframe(
     dataframe=testdf,
-    directory="../../mel/DS/test/" + cat,
+    directory="../../mel/DS/folded/" + cat,
     x_col="slice_file_name",
     y_col=None,
     batch_size=32,
@@ -143,19 +143,19 @@ for cat in cats:
         # Save image
         plt.imshow(batch[i], cmap="seismic", clim=(-1, 1))
         plt.axis('off')
-        filename = './images/'+ cat + '/' + remove_ext(filenames[counter*32+i]) + "_" + predictions[counter*32+i] + '.png'
+        filename = '../../mel/results/''+ cat + '/' + remove_ext(filenames[counter*32+i]) + "_" + predictions[counter*32+i] + '.png'
         plt.savefig(filename)
 
         # Save LRPepsilon
         plt.imshow(a[i], cmap="seismic", clim=(-1, 1))
         plt.axis('off')
-        filename = './images/' + cat + '/' + remove_ext(filenames[counter*32+i]) + '_lrp_epsilon.png'
+        filename = '../../mel/results/' + cat + '/' + remove_ext(filenames[counter*32+i]) + '_lrp_epsilon.png'
         plt.savefig(filename)
 
         # Save LRPflat
         plt.imshow(b[i], cmap="seismic", clim=(-1, 1))
         plt.axis('off')
-        filename = './images/' + cat + '/' + remove_ext(filenames[counter*32+i]) + '_lrp_flat.png'
+        filename = '../../mel/results/' + cat + '/' + remove_ext(filenames[counter*32+i]) + '_lrp_flat.png'
         plt.savefig(filename)
         plot.close()
         plot.close('all')

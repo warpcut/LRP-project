@@ -47,7 +47,7 @@ model = keras.models.load_model('../../mel/model/model_80_nadam.h5')
 # Show the model architecture
 model.summary()
 
-testdf=pd.read_csv('./urban/UrbanSound8K.csv',dtype=str)
+testdf=pd.read_csv('../UrbanSound8Kext.csv', sep=';',dtype=str)
 testdf["slice_file_name"]=testdf["slice_file_name"].apply(append_ext)
 
 cats= ["engine_idling","siren", "car_horn", "drilling", "gun_shot", "street_music", "jackhammer", "air_conditioner", "children_playing", "dog_bark"]

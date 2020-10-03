@@ -49,9 +49,8 @@ model.summary()
 
 testdf=pd.read_csv('../UrbanSound8Kext.csv', sep=';',dtype=str)
 testdf["slice_file_name"]=testdf["slice_file_name"].apply(append_ext)
-
-cats= ["engine_idling","siren", "car_horn", "drilling", "gun_shot", "street_music", "jackhammer", "air_conditioner", "children_playing", "dog_bark"]
-size = [ 1000, 929, 429, 1000, 374, 1000, 1000, 1000, 1000, 1000]
+cats= ["engine_idling", "siren", "car_horn", "drilling", "gun_shot", "street_music", "jackhammer", "air_conditioner", "children_playing", "dog_bark"]
+size = [1000, 929, 429, 1000, 374, 1000, 1000, 1000, 1000, 1000]
 #cat_size = 929
 #cat = "siren"
 #cat_size = 429
@@ -109,14 +108,14 @@ for cat in cats:
 
   model_wo_sm = iutils.keras.graph.model_wo_softmax(model)
   #model_wo_sm = model
-  del model
   gc.collect()
   test_generator.reset()
   print(len(predictions))
 
   counter = 0
   for batch in test_generator:
-    if counter*32 >= size[sizeCounter]:
+    #if counter*32 >= size[sizeCounter]:
+    if counter*32 >= len(predictions):
         break
     # LRP epsilon
     analyzer = innvestigate.create_analyzer("lrp.epsilon",model_wo_sm)

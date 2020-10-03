@@ -40,7 +40,7 @@ def remove_ext(fn):
     return os.path.splitext(fn)[0]
 print("Loading model: ")
 # Load model, including its weights and the optimizer
-model = keras.models.load_model('../../mel/model/model_80_nadam.h5')
+model = keras.models.load_model('../../cq/model/model_80_nadam.h5')
 #optimizer = keras.optimizers.Nadam(learning_rate=0.0005)
 #model.compile(optimizer,loss="categorical_crossentropy",metrics=["accuracy"])
 #model.load_weights('./models/modelkB_weights_80_nadam.h5')
@@ -77,7 +77,7 @@ for cat in cats:
   print("generator: " + str(cat))
   test_generator=test_datagen.flow_from_dataframe(
     dataframe=testdf,
-    directory="../../mel/DS/folded/" + cat,
+    directory="../../cq/DS/folded/" + cat,
     x_col="slice_file_name",
     y_col=None,
     batch_size=32,
@@ -87,7 +87,7 @@ for cat in cats:
     target_size=(220,220))
   label_generator=test_datagen.flow_from_dataframe(
     dataframe=testdf,
-    directory="../../mel/DS/label_gen",
+    directory="../../cq/DS/label_gen",
     x_col="slice_file_name",
     y_col="class",
     batch_size=2,
@@ -135,19 +135,19 @@ for cat in cats:
         # Save image
         plt.imshow(batch[i], cmap="seismic", clim=(-1, 1))
         plt.axis('off')
-        filename = '../../mel/results/' + cat + '/' + remove_ext(filenames[counter*32+i]) + "_" + predictions[counter*32+i] + '.png'
+        filename = '../../cq/results/' + cat + '/' + remove_ext(filenames[counter*32+i]) + "_" + predictions[counter*32+i] + '.png'
         plt.savefig(filename)
 
         # Save LRPepsilon
         plt.imshow(a[i], cmap="seismic", clim=(-1, 1))
         plt.axis('off')
-        filename = '../../mel/results/' + cat + '/' + remove_ext(filenames[counter*32+i]) + '_lrp_epsilon.png'
+        filename = '../../cq/results/' + cat + '/' + remove_ext(filenames[counter*32+i]) + '_lrp_epsilon.png'
         plt.savefig(filename)
 
         # Save LRPflat
         plt.imshow(b[i], cmap="seismic", clim=(-1, 1))
         plt.axis('off')
-        filename = '../../mel/results/' + cat + '/' + remove_ext(filenames[counter*32+i]) + '_lrp_flat.png'
+        filename = '../../cq/results/' + cat + '/' + remove_ext(filenames[counter*32+i]) + '_lrp_flat.png'
         plt.savefig(filename)
         plot.close()
         plot.close('all')

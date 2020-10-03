@@ -12,4 +12,4 @@ testdf["slice_file_name"]=testdf["slice_file_name"].apply(append_ext)
 
 for index, row in testdf.iterrows():
   #print(row['slice_file_name'], row['class'])
-  copyfile("../../mel/mel-train/" + str(row['slice_file_name']), "../../mel/DS/folded/" + str(row['class']) + "/" + str(row['slice_file_name']))
+  copyfile("../../cq/cq-train/" + str(row['slice_file_name']), "../../cq/DS/folded/" + str(row['class']) + "/" + str(row['slice_file_name']))

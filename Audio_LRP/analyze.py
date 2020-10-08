@@ -49,8 +49,10 @@ model.summary()
 
 testdf=pd.read_csv('../UrbanSound8Kext.csv', sep=';',dtype=str)
 testdf["slice_file_name"]=testdf["slice_file_name"].apply(append_ext)
-cats= ["engine_idling", "siren", "car_horn", "drilling", "gun_shot", "street_music", "jackhammer", "air_conditioner", "children_playing", "dog_bark"]
-size = [1000, 929, 429, 1000, 374, 1000, 1000, 1000, 1000, 1000]
+#cats= ["engine_idling", "siren",
+cats = ["car_horn", "drilling", "gun_shot", "street_music", "jackhammer", "air_conditioner", "children_playing", "dog_bark"]
+#size = [1000, 929, 
+size = [429, 1000, 374, 1000, 1000, 1000, 1000, 1000]
 #cat_size = 929
 #cat = "siren"
 #cat_size = 429
@@ -87,7 +89,7 @@ for cat in cats:
     target_size=(220,220))
   label_generator=test_datagen.flow_from_dataframe(
     dataframe=testdf,
-    directory="../../cq/DS/label_gen",
+    directory="../../mel/DS/label_gen",
     x_col="slice_file_name",
     y_col="class",
     batch_size=2,
@@ -156,3 +158,6 @@ for cat in cats:
     counter += 1
   sizeCounter += 1
   print(cat)
+  del test_generator
+  gc.collect()
+

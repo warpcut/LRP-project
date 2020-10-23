@@ -1,2 +1,3 @@
-# AUDIO LRP - street pattern recognition and analysis
+# Understanding  deep urban sound classification using Layer-wise Relevance Propagation
 
+After constructing a deep neural network for urban sound classification, this work focuses on the sensitive application of assisting drivers suffering from hearing  loss. As such, clear etiology justifying and interpreting model predictions comprise a strong requirement. To this end, we used two different representations of audio signals, i.e. Mel and constant-Q spectrograms, while the decisions made by the deep neural network are explained via  layer-wise relevance propagation. At the same time, frequency content assigned with high relevance in both feature sets, indicates extremely discriminative information characterizing the present classification task. Overall, we present an explainable AI framework for understanding deep urban sound classification.
